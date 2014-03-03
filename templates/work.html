@@ -1,0 +1,56 @@
+{% load static from staticfiles %}
+<html>
+	<head>
+		<title>Work</title>
+		<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+		<link rel="stylesheet" href="{% static 'css/bootstrap-theme.min.css' %}">		
+		<link rel="stylesheet" href="{% static 'css/style.css' %}">
+		<script type="text/javascript"  src="{% static 'js/jquery-1.5.min.js' %}"></script>
+		<script type="text/javascript" src="{% static 'js/signup.js' %}"></script>
+	</head>
+	<body>
+	<div class="pat">
+		<img src="{% static 'images/header2.png' %}" />
+	</div>
+	<section class="container" style="background-color:rgba(3,3,3,0.3);">
+		<div class="menubar">
+			<div class="nav">
+				<ul id="MenuBar1" class="navigation">
+					<li class="dropdown office"><a href="#">Home</a></li>
+					<li class="dropdown work"><a class="link"  href="{% url 'work' %}">Work</a></li>
+					<li class="dropdown support"><a class="link" href="#">Events</a>
+						<ul>
+							<li><a class="link2" href="#">Item 3.1</a></li>
+							<li><a class="link2" href="#">Item 3.2</a></li>
+							<li><a class="link2" href="#">Item 3.3</a></li>
+						</ul>
+					</li>
+					<li class="dropdown idea"><a href="#">Discussion Forum</a></li>
+					<li class="dropdown phone"><a href="#">Contact Us</a></li>
+					<li class="dropdown signup"><a href="{% url 'register' %}">Join Team ME</a></li>
+		<!--				<li class="dropdown login"><a href="#">Log in</a></li> -->
+					<li class="dropdown donate"><img src="{% static 'images/white.png' %}" width="110px" /></li>
+				</ul>	
+			</div>
+			<div class="search_bar">
+				<div class="search_text"><input type="search" name="searchBar" placeholde="Search"  value="Search"/></div>
+			</div>
+		</div>
+	</section>
+	<section class="container">
+		<div class="ngoEvent">
+			<div class="ngoName">
+				XYZ
+			</div>
+			<div class="eventDetail">
+				hkdjhdsku lsakjdl dklasdjkjd asn dkjhsax sndkfnwdk sdmcndi cmnc sducnjsd xnuoc sdkcn riuhc sdncjucb sdkjc uch sdjknce ric coidshc sdjncx wdicnsdjkc wuic c ckuhc kjcnhe iurcnkceufchwkejcnsdkjchreiuchknscsdhfgwetdrwe idkjabxvsatxdfqsjxh aslofjeo9gfu icugwdy uasxf aesxwqisuwioidbxasjxhfwteydfikhxasxgwyfdwjhxbashx qowi0qpw jzhxb dwytx hz eytwz eu wdx jdkzn uixh owxzskdzfz dkzi weoiz hewzwkjz dwiz ewiuz wzdioweh ziuwef zwoezwe<br />
+			</div>
+			<div class="confButton">
+				<form action="." method="">
+					<input type="checkbox" name="cnfEntry" value="I will definitely come" />
+				</form>
+			</div>
+		</div>
+	</section>
+	</body>
+</html>

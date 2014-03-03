@@ -1,0 +1,109 @@
+@charset "utf-8";
+/* CSS Document */
+html{min-height:100%;position:relative}/* make sure it is at least as tall as the viewport */
+body{height:100%}
+.wrapper
+{
+	margin-left:auto;
+    margin-right:auto;
+	width:1366px;
+}
+body
+{
+	background:url(../images/signupback.png);
+	background-size:cover;
+	background-repeat:no-repeat;
+	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+	background-color:#000;
+	}
+.tb
+{
+	margin-left:3%;
+	padding-top:7%;
+	font-size:16px;
+	}
+td{
+	font-size:18px;
+	color:#FFF;}
+.in
+	{
+	margin-top:5px;
+	margin-bottom:3px;
+	background:#006699;
+	width:350px;
+	height:32px;
+	}
+.in input{	
+	margin-top:0px;
+	margin-left:5px;
+	background:#006699;
+	width:300px;
+	border:0px;
+	height:32px;
+	color:#FFF;
+	font-weight:900;
+	}
+.sub {
+	width:140px;
+	height:35px;
+	cursor:pointer;
+	background:#006699;
+	border-radius:2px;
+	box-shadow:3px 2px 2px 2px #000000;
+	overflow:hidden;
+	}
+.sub:after{
+	content:url(../images/arrow-right.png);
+	position:absolute;
+	
+	margin-top:2px;
+	}
+.sub input{
+	font-size:24px;
+	font-weight:600;
+	border:0px ;cursor:pointer;
+	background:#006699;
+	margin-top:2px;
+	margin-left:-24px;
+	color:#FFF;
+	position:relative;
+	}
+.form
+{	
+	position:absolute;ss
+	padding-left:56%;
+	top:0px;
+	left:788px;
+	width:537px;
+	height:100%;
+	background-color:rgba(3,3,3,0.5);
+	}
+.form h2
+{
+	text-align:center;
+	font-size:43px;
+	color:#FFF;
+	font-weight:700;
+	padding-top:3%;
+	margin-right:2%;
+	}
+input {
+	-webkit-appearance: none;
+	box-shadow: none !important; 
+	color:#000; }
+.in input:focus{outline:0;}
+::-webkit-input-placeholder {
+   color: white;
+}
+
+":-moz-placeholder { /* Firefox 18- */
+   color: white;  
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   color: white;  
+}
+
+:-ms-input-placeholder {  
+   color: white;  
+}
