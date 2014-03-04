@@ -14,17 +14,18 @@
 			<div class="tb">
 				<table>
 					<tr><td>Display Name </td>
-						<td><div class="in d"><input type="text" name="disnam" placeholder="Name shown in your profile" /></div></td></tr><tr ><td><br /></td></tr>
+						<td><div class="in d">{{ form.username }}</div></td></tr><tr ><td><br /></td></tr>
 
 					<tr><td>Email Address</td><td>
-						<div class="in l"><input type="text" name="email" placeholder="Contact Email" /></div></td></tr><tr ><td><br /></td></tr>
+						<div class="in l">{{ form.email }}</div></td></tr><tr ><td><br /></td></tr>
 
 					<tr><td>Password</td><td>
-						<div class="in p"><input type="password" name="password" placeholder="Choose your password" /></div></td></tr><tr ><td><br /></td></tr>
+						<div class="in p">{{ form.password1 }}</div></td></tr><tr ><td><br /></td></tr>
 
 					<tr><td>Confirm Password </td><td>
-						<div class="in i"><input type="password" name="cnfpassword" placeholder="Type password again" /></div></td></tr><tr ><td><br /></td></tr>
+						<div class="in i">{{ form.password2 }}</div></td></tr><tr ><td><br /></td></tr>
 					<tr ><td><br /></td></tr>
+					<tr><td></td></tr>
 					<tr><td colspan="3" align="center"><div class="sub" ><input type="submit" name="submit" value="Join Us" /></div></td></tr>
 				</table>
 			</div>

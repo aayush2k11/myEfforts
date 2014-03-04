@@ -6,13 +6,13 @@ from django.contrib.auth.forms import AuthenticationForm
 
 class signupForm(forms.Form):
     #userName
-    username = forms.CharField(widget=forms.TextInput(attrs=dict(required=True, max_length=32)), label="Username")
+    username = forms.CharField(widget=forms.TextInput(attrs=dict(required=True, max_length=32,placeholder="Eg: john345")), label="Username")
     #emailID of the user
-    email = forms.EmailField(widget=forms.TextInput(attrs=dict(required=True, max_length=75)), label="Email address", initial='example@abc.com')
+    email = forms.EmailField(widget=forms.TextInput(attrs=dict(required=True, max_length=75,placeholder="Eg: john@yahoo.com")), label="Email address", initial='example@abc.com')
     #password of user
-    password1 = forms.CharField(widget=forms.PasswordInput(attrs=dict(required=True, max_length=30, render_value=False)), label= "Password")
+    password1 = forms.CharField(widget=forms.PasswordInput(attrs=dict(required=True, max_length=30, render_value=False,placeholder="john345")), label= "Password")
     #renter the password
-    password2 = forms.CharField(widget=forms.PasswordInput(attrs=dict(required=True, max_length=30, render_value=False)), label= "Password (again)")
+    password2 = forms.CharField(widget=forms.PasswordInput(attrs=dict(required=True, max_length=30, render_value=False,placeholder="john345")), label= "Password (again)")
     #choices to register/login as an ngo or user
     choice_field = forms.ChoiceField(widget=forms.RadioSelect, choices=(('1','NGO',),('2','Member',)),label = 'Type of User')
 

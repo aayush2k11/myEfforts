@@ -14,9 +14,7 @@ class userLogin(models.Model):
     user_type = models.CharField(max_length=1, choices = USER_TYPES)
 
 class commonUser(models.Model):
-    #userID of the user
-    userID = models.ForeignKey(userLogin)
-    #Person is an USer's object
+    #user of the user
     user = models.OneToOneField(User)
     #firstname hold the first name of the user
     firstName = models.CharField(max_length = 32)
@@ -44,12 +42,10 @@ class commonUser(models.Model):
     profilePic = models.ImageField(upload_to = 'userImage/' ,default = 'userImage/None/no-img.jpg')
 
     def __unicode__(self):
-        return self.name
+        return self.firstName
     
 class ngoUser(models.Model):
-    #userID of the ngo
-    userID = models.ForeignKey(userLogin)
-    #ngo's User
+    #user of the ngo
     user = models.OneToOneField(User)
     #ngo name will be used for ngo's Login
     ngoName = models.CharField(max_length= 100)
@@ -69,6 +65,9 @@ class ngoUser(models.Model):
     ngoUrl = models.URLField()
     #ngo Image
     ngoProfilePic = models.ImageField(upload_to = 'ngoImage/' ,default='ngoImage/no-img.jpg')
+
+    def __unicode__(self):
+        return self.ngoName
 
 class userFollow(models.Model):
     #followerID is the id of the follower

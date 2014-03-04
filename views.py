@@ -67,8 +67,9 @@ def register(request):
 def regCustomer(request,email):
     print email
     if request.method == 'POST':
-        form = commonUserRegistration(request.POST)
+        form = commonUserRegistration(request.POST,request.FILES)
         if form.is_valid():
+            print "no error"
             p=''
             if form.cleaned_data['profession']=='1':
                 p='student'
@@ -80,18 +81,20 @@ def regCustomer(request,email):
             else:
                 g='F'
             emailID=email
+            print User.objects.get(email=emailID)
             customer = commonUser.objects.create(
-                    user=User.objects.filter(email=emailID),
-                    userID=user.id,
+                    user=User.objects.get(email=emailID),
                     firstName=form.cleaned_data['firstName'],
                     lastName=form.cleaned_data['lastName'],
                     contactNumber = form.cleaned_data['contactNumber'],
                     profession=p,
                     gender=g,
+                    dob=form.cleaned_data['dob'],
                     profilePic=form.cleaned_data['profilePic'],                    
                 )
             return HttpResponseRedirect('/register/success/')
         else:
+            print "Error occurred"
             variables = RequestContext(request, {
 			'form': form
 			})
@@ -112,12 +115,12 @@ def regCustomer(request,email):
 def regNgo(request,email):
     print email
     if request.method == 'POST':
-        form = ngoRegistration(request.POST)
-        if form.is_valid():            
+        form = ngoRegistration(request.POST,request.FILES)
+        if form.is_valid():
+            print "No error"
             emailID=email
             customer = commonUser.objects.create(
                     user=User.objects.filter(email=emailID),
-                    userID=user.id,
                     ngoName=form.cleaned_data['ngoName'],
                     manFirstName=form.cleaned_data['manFirstName'],
                     manLastName=form.cleaned_data['manLastName'],
