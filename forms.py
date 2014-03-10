@@ -46,7 +46,7 @@ class commonUserRegistration(forms.Form):
     #gender of user
     gender = forms.ChoiceField(widget = forms.RadioSelect, choices = (('1','Male'),('2','Female')), label = 'Gender')
     #profile picture of user
-    profilePic = forms.ImageField() 
+    #profilePic = forms.ImageField() 
 
 class ngoRegistration(forms.Form):
     #name of ngo
@@ -62,8 +62,16 @@ class ngoRegistration(forms.Form):
     #Ngo's head office Contact number
     ngoContactNumber = forms.IntegerField(widget=forms.TextInput(attrs = dict(required=True, max_length = 10)), label = "Manager's Conact Number")
     #ngo's description
-    ngoDetails = forms.CharField(widget = forms.TextInput(attrs = dict(required=True, max_length=1000)), label = "Description of Your NGO")
+    ngoDetails = forms.CharField(widget = forms.TextInput(attrs = dict(required=True, max_length=100)), label = "Description of Your NGO")
     #url of the ngo
     ngoURL = forms.URLField(label="NGO's URL:")
     #profile picture of NGO
-    profilePic = forms.ImageField()
+    #profilePic = forms.ImageField()
+
+class addEvent(forms.Form):
+    #evnetDate is the date of the event
+    eventDate = forms.DateField(widget = forms.TextInput(attrs=dict(required=True,max_length=10)), label="Date of the Event(YYYY-MM-DD)")
+    #eventName is the name of the event
+    eventName = forms.CharField(widget = forms.TextInput(attrs=dict(required=True, max_length=50)), label = "Name of Event")
+    #eventDetail is the detail of the event
+    eventDetail = forms.CharField(widget = forms.TextInput(attrs=dict(required=True, max_length=1000)), label="Event's Details")

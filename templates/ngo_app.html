@@ -1,0 +1,9 @@
+{% load static from staticfiles %}
+<body>
+	Welcome {{ ngoName }} <br />
+	<ul>
+		<li> <a href={% url 'add-event' %}>Add Event</a></li>
+		<li>Edit Event</li>
+		<li>Edit Profile</li>
+	</ul>
+</body>

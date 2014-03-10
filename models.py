@@ -39,7 +39,7 @@ class commonUser(models.Model):
         )
     gender = models.CharField(max_length = 1, choices = GENDER_TYPES)
     #profile Picture
-    profilePic = models.ImageField(upload_to = 'userImage/' ,default = 'userImage/None/no-img.jpg')
+    #profilePic = models.ImageField(upload_to = 'userImage/' ,default = 'userImage/None/no-img.jpg')
 
     def __unicode__(self):
         return self.firstName
@@ -54,17 +54,17 @@ class ngoUser(models.Model):
     #manager's last name
     manLastName = models.CharField(max_length=50)
     #manager's contact number
-    manConactNum = models.IntegerField()
+    manContactNum = models.IntegerField()
     #ngo head office address
     ngoAddress = models.CharField(max_length = 100)
     #ngo's head office contact number
-    ngoConactNum = models.IntegerField()
+    ngoContactNum = models.IntegerField()
     #ngo's details
-    ngoDetails = models.CharField(max_length = 1000)
+    ngoDetails = models.CharField(max_length = 100)
     # ngo's URL
     ngoUrl = models.URLField()
     #ngo Image
-    ngoProfilePic = models.ImageField(upload_to = 'ngoImage/' ,default='ngoImage/no-img.jpg')
+    #ngoProfilePic = models.ImageField(upload_to = 'ngoImage/' ,default='ngoImage/no-img.jpg')
 
     def __unicode__(self):
         return self.ngoName

@@ -38,19 +38,26 @@
 		</div>
 	</section>
 	<section class="container">
+		{% block content %}
 		<div class="ngoEvent">
+			{% for event in eventList %}
 			<div class="ngoName">
-				XYZ
+				{{ event.eventName }}
+				<br />
 			</div>
 			<div class="eventDetail">
-				hkdjhdsku lsakjdl dklasdjkjd asn dkjhsax sndkfnwdk sdmcndi cmnc sducnjsd xnuoc sdkcn riuhc sdncjucb sdkjc uch sdjknce ric coidshc sdjncx wdicnsdjkc wuic c ckuhc kjcnhe iurcnkceufchwkejcnsdkjchreiuchknscsdhfgwetdrwe idkjabxvsatxdfqsjxh aslofjeo9gfu icugwdy uasxf aesxwqisuwioidbxasjxhfwteydfikhxasxgwyfdwjhxbashx qowi0qpw jzhxb dwytx hz eytwz eu wdx jdkzn uixh owxzskdzfz dkzi weoiz hewzwkjz dwiz ewiuz wzdioweh ziuwef zwoezwe<br />
+				{{ event.eventDetail }}
+				<br />
 			</div>
 			<div class="confButton">
 				<form action="." method="">
 					<input type="checkbox" name="cnfEntry" value="I will definitely come" />
 				</form>
 			</div>
+			<br />
+			{% endfor %}
 		</div>
+		{% endblock %}
 	</section>
 	</body>
 </html>

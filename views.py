@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login
 from myEfforts.models import *
 from django.shortcuts import render, get_object_or_404
 from django.http import StreamingHttpResponse,HttpResponse, HttpResponseRedirect
@@ -24,15 +25,29 @@ def success(request):
 
 def work(request):
     template = loader.get_template('work.html')
-    return HttpResponse(template.render(RequestContext(request,'')))
-
-def eventList(request):
     eventList=[]
     currDate=time.strftime('%Y-%m-%d')
-    for ev in event.objects():
-        date=unicode(ev.eventDate.date())
+    for ev in event.objects.all():
+        date=str(ev.eventDate)
         if date >= currDate:
             eventList.append(ev)
+    context = RequestContext(request,{"eventList":eventList})
+    print eventList
+    return HttpResponse(template.render(context))
+    return HttpResponse(template.render(RequestContext(request,'')))
+            
+
+def ngo_app(request):
+    template = loader.get_template('ngo_app.html')
+    user = User.objects.get(username=request.user)
+    context = RequestContext(request,{"ngouser":user.ngouser.id, "ngoName":user.ngouser.ngoName})
+    return HttpResponse(template.render(context))
+
+def member_app(request):
+    template = loader.get_template('member_app.html')
+    user = User.objects.get(username=request.user)
+    context = RequestContext(request,{"member":user.commonuser.id, "firstName":user.commonuser.firstName})
+    return HttpResponse(template.render(context))
 
 @csrf_protect
 def register(request):
@@ -65,11 +80,9 @@ def register(request):
         )
 
 def regCustomer(request,email):
-    print email
     if request.method == 'POST':
         form = commonUserRegistration(request.POST,request.FILES)
         if form.is_valid():
-            print "no error"
             p=''
             if form.cleaned_data['profession']=='1':
                 p='student'
@@ -81,7 +94,6 @@ def regCustomer(request,email):
             else:
                 g='F'
             emailID=email
-            print User.objects.get(email=emailID)
             customer = commonUser.objects.create(
                     user=User.objects.get(email=emailID),
                     firstName=form.cleaned_data['firstName'],
@@ -90,11 +102,10 @@ def regCustomer(request,email):
                     profession=p,
                     gender=g,
                     dob=form.cleaned_data['dob'],
-                    profilePic=form.cleaned_data['profilePic'],                    
+                    #profilePic=form.cleaned_data['profilePic'],                    
                 )
             return HttpResponseRedirect('/register/success/')
         else:
-            print "Error occurred"
             variables = RequestContext(request, {
 			'form': form
 			})
@@ -113,23 +124,21 @@ def regCustomer(request,email):
             )
 
 def regNgo(request,email):
-    print email
     if request.method == 'POST':
         form = ngoRegistration(request.POST,request.FILES)
         if form.is_valid():
-            print "No error"
             emailID=email
-            customer = commonUser.objects.create(
-                    user=User.objects.filter(email=emailID),
+            ngo = ngoUser.objects.create(
+                    user=User.objects.get(email=emailID),
                     ngoName=form.cleaned_data['ngoName'],
                     manFirstName=form.cleaned_data['manFirstName'],
                     manLastName=form.cleaned_data['manLastName'],
-                    manContactNumber = form.cleaned_data['manContactNumber'],
+                    manContactNum = form.cleaned_data['manContactNumber'],
                     ngoAddress=form.cleaned_data['ngoAddress'],
-                    ngoContactNum=form.cleand_data['ngoContactNumber'],
+                    ngoContactNum=form.cleaned_data['ngoContactNumber'],
                     ngoDetails=form.cleaned_data['ngoDetails'],
                     ngoUrl=form.cleaned_data['ngoURL'],
-                    ngoProfilePic=form.cleaned_data['profilePic'],                    
+                    #ngoProfilePic=form.cleaned_data['profilePic'],                    
                 )
             return HttpResponseRedirect('/register/success/')
         else:
@@ -137,7 +146,7 @@ def regNgo(request,email):
 			'form': form
 			})
             return render_to_response(
-                'regCustomer.html',
+                'regNGO.html',
                 variables,
             )
     else:
@@ -147,5 +156,50 @@ def regNgo(request,email):
             })
         return render_to_response(
                 'regNGO.html',
+                variables,
+            )
+
+def redirect_to_app(request):
+    user=User.objects.get(username=request.user)
+    try :
+        ngo = user.ngouser
+    except:
+        ngo=None
+    try:
+        member = user.commonuser
+    except:
+        member=None
+    if ngo!=None:
+        return HttpResponseRedirect('/ngo-app/')
+    elif member!=None:
+        return HttpResponseRedirect('/member-app/')
+
+def addEvents(request):
+    if request.method == "POST":
+        form = addEvent(request.POST)
+        if form.is_valid():
+            user = User.objects.get(username=request.user)
+            ngoId=user.ngouser
+            event1=event.objects.create(
+                ngoID=ngoId,
+                eventDate = form.cleaned_data['eventDate'],
+                eventName = form.cleaned_data['eventName'],
+                eventDetail = form.cleaned_data['eventDetail'],
+                )
+            print "i'm done!!"
+            return HttpResponseRedirect('/ngo-app/')
+        else:
+            variables = RequestContext(request, {
+			'form': form
+			})
+            return render_to_response(
+                'addEvent.html',
+                variables,
+            )
+    else:
+        form = addEvent()
+        variables = RequestContext(request, {'form': form})
+        return render_to_response(
+               'addEvent.html',
                 variables,
             )
